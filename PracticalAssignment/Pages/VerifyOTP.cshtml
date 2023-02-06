@@ -1,0 +1,12 @@
+﻿@page
+@model PracticalAssignment.Pages.VerifyOTPModel
+@{
+}
+<h1 class="display-4">Verify OTP</h1>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form method="post">
+    <label asp-for="OTP">Enter the SMS OTP to verify your login</label>
+    <input class="form-control" type="text" asp-for="OTP" />
+    <span asp-validaton-for="OTP" class="text-danger"></span>
+    <button type="submit" class="btn btn-primary">Verify</button>
+</form>

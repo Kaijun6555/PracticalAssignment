@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@using Microsoft.AspNetCore.Identity;
+@using PracticalAssignment.Models;
+@inject SignInManager<FFMUser> SignInManager
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@{
+    if(@Model.userObj != null){
+        <h1>Welcome Back!</h1>
+        <h3>@Model.userObj.FullName</h3>
+        <h3>@Model.creditCard</h3>
+        <h3>@Model.userObj.Email</h3>
+        <h3>@Model.userObj.PhoneNumber</h3>
+        <h3>@Model.userObj.DeliveryAddress</h3>
+        <h3>@Model.userObj.Gender</h3>
+        <h3>@Model.userObj.AboutMe</h3>
+    }
+    else{
+
+    }
+}
+

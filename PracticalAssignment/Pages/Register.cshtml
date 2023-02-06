@@ -1,0 +1,128 @@
+﻿@page
+@model PracticalAssignment.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+
+}
+<style>
+	.pwdmeter{
+		height:10px;
+		width:10%;
+		border:1px solid black;
+		border-radius:10px;
+	}
+</style>
+
+<div class="container mt-5">
+
+	<div class="row justify-content-center align-items-center">
+
+		<div class="col-sm-12 col-md-12 col-lg-4">
+			<h1 class="mb-3">Register </h1>
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<form method="post" enctype="multipart/form-data">
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.FullName">Full Name</label>
+					<input type="Text" asp-for="RModel.FullName" class="form-control" />
+					<span asp-validation-for="RModel.FullName" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.Email">Email Address</label>
+					<input type="Text" asp-for="RModel.Email" class="form-control" />
+					<span asp-validation-for="RModel.Email" class="text-danger"></span>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="RModel.Gender"></label>
+					<div class="col-sm-10 d-flex align-items-center">
+						<div class="form-check form-check-inline">
+							@Html.RadioButtonFor(m => m.RModel.Gender, "Male", new {@class = "form-check-input"})
+							<label class="form-check-label">Male</label>
+						</div>
+						<div class="form-check form-check-inline">
+							@Html.RadioButtonFor(m => m.RModel.Gender, "Female", new {@class = "form-check-input"})
+							<label class="form-check-label">Female</label>
+						</div>
+						<span asp-validation-for="RModel.Gender" class="text-danger"></span>
+					</div>
+				</div>
+
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.PhoneNumber">Mobile Number</label>
+					<input type="Text" asp-for="RModel.PhoneNumber" class="form-control" />
+					<span asp-validation-for="RModel.PhoneNumber" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.DeliveryAddress">Delivery Address</label>
+					<input type="Text" asp-for="RModel.DeliveryAddress" class="form-control" />
+					<span asp-validation-for="RModel.DeliveryAddress" class="text-danger"></span>
+
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.CreditCard">Credit Card</label>
+					<input type="Text" asp-for="RModel.CreditCard" class="form-control" />
+					<span asp-validation-for="RModel.CreditCard" class="text-danger"></span>
+				</div>
+
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.Password">Password</label>
+					<p style="font-size:xx-small;">Password requires at least 12 characters. One uppercase and lowecase letter. One number and special character</p>
+					<input type="Text" asp-for="RModel.Password" class="form-control"/>
+					<span asp-validation-for="RModel.Password" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.ConfirmPassword">Confirm Password</label>
+					<input type="Text" asp-for="RModel.ConfirmPassword" class="form-control" />
+					<span asp-validation-for="RModel.ConfirmPassword" class="text-danger"></span>
+				</div>
+
+				<div class="col-md-4">
+					<div class="mb-3">
+						<input type="file" accept="image/*.jpg" asp-for="Upload"
+							   class="form-control" onchange="showImgPreview(this)"/>
+						<span asp-validation-for="Upload" class="text-danger"></span>
+					</div>
+					<img id="imgPreview" class="rounded-circle"
+						 style="height:300px;width:300px;object-fit:cover"/>
+				</div>
+
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.AboutMe"></label>
+					<input type="Text" asp-for="RModel.AboutMe" class="form-control" />
+					<span asp-validation-for="RModel.AboutMe" class="text-danger"></span>
+				</div>
+
+
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary">Register</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	function showImgPreview(input) {
+		if (input.files[0]) {
+			var uploadimg = new FileReader();
+			uploadimg.onload = function (displayimg) {
+				$("#imgPreview").attr('src', displayimg.target.result);
+			}
+			uploadimg.readAsDataURL(input.files[0]);
+		}
+	}
+
+</script>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+    }
